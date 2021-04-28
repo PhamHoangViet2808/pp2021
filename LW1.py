@@ -1,6 +1,6 @@
 # Student Management System
 """
-Fields :- ['roll', 'name', 'age', 'email', 'phone']
+Fields :- ['roll', 'name', 'age', 'mark' ]
 1. Add New Student
 2. View Students
 3. Search Student
