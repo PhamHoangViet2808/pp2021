@@ -1,178 +1,187 @@
-# Student Management System
-"""
-Fields :- ['roll', 'name', 'age', 'mark' ]
-1. Add New Student
-2. View Students
-3. Search Student
-4. Update Student
-5. Delete Student
-6. Quit
-"""
-import csv
-# Define global variables
-student_fields = ['roll', 'name', 'age', 'mark']
-student_database = 'students.csv'
+studentL = {}
+Students =[]
+courseL = {}
+Courses =[]
+def inst(s_id, s_name, dob):
+    studentL[s_id] = [s_name, dob]
+def NoS():
+    NoS = int(input("Number of Students: "))
+    return NoS
+def InSt():
+    print("Enter Student Information: ")
+    s_id = input("ID: ")
+    s_name = input("Name : ")
+    DoB = input("DoB: ")
+    inst(id, name,DoB)
+    A = {"id":s_id,"name":s_name,"DoB":DoB}  
+    return A
+def St_List(Students):
+    for A in Students:
+            print(f"id:{A['id']},name: {A['name']},DoB: {A['DoB']}")
+            
+#main 
+NoS = NoS()
+for i in range (0,NoS):
+    A = InSt()
+    Students += [A]
+
+def CountCourse():
+    count = int(input("How many courses are there: "))
+    return count
 
 
-def display_menu():
-    print("--------------------------------------")
-    print(" Welcome to Student Management System")
-    print("---------------------------------------")
-    print("1. Add New Student")
-    print("2. View Students")
-    print("3. Search Student")
-    print("4. Update Student")
-    print("5. Delete Student")
-    print("6. Quit")
+#course's infor
+def Courses_detail():
+    print("Enter Course's information: ")
+    c_id = input("ID: ")
+    c_name = input("Name: ")
+    return c_id, c_name
 
 
-def add_student():
-    print("-------------------------")
-    print("Add Student Information")
-    print("-------------------------")
-    global student_fields
-    global student_database
-
-    student_data = []
-    for field in student_fields:
-        value = input("Enter " + field + ": ")
-        student_data.append(value)
-
-    with open(student_database, "a", encoding="utf-8") as f:
-        writer = csv.writer(f)
-        writer.writerows([student_data])
-
-    print("Data saved successfully")
-    input("Press any key to continue")
-    return
+#display couses' list
+def Courses_list():
+    for i in range(len(courses)):
+        print("Course's ID: " + courses[i].get("id"))
+        print("Course's name: " + courses[i].get("name"))
 
 
-def view_students():
-    global student_fields
-    global student_database
-
-    print("--- Student Records ---")
-
-    with open(student_database, "r", encoding="utf-8") as f:
-        reader = csv.reader(f)
-        for x in student_fields:
-            print(x, end='\t |')
-        print("\n-----------------------------------------------------------------")
-
-        for row in reader:
-            for item in row:
-                print(item, end="\t |")
-            print("\n")
-
-    input("Press any key to continue")
+#enter marks
+def Mark(students, course):
+    for i in range(len(students)):
+        marks.append({course: {}})
+        mark = float(input("Enter " + students[i].get("name") + "'s mark:\n"))
+        marks[i].update({course: mark})
 
 
-def search_student():
-    global student_fields
-    global student_database
+#display marks' list
+def Marks_list():
+    for i in range(len(students)):
+        print(students[i].get("name") + "'s mark:")
+        print(marks[i].get(choose_course))
+        print("\n")
 
-    print("--- Search Student ---")
-    roll = input("Enter roll no. to search: ")
-    with open(student_database, "r", encoding="utf-8") as f:
-        reader = csv.reader(f)
-        for row in reader:
-            if len(row) > 0:
-                if roll == row[0]:
-                    print("----- Student Found -----")
-                    print("Roll: ", row[0])
-                    print("Name: ", row[1])
-                    print("Age: ", row[2])
-                    print("Mark", row[3])
-                    break
-        else:
-            print("Roll No. not found in our database")
-    input("Press any key to continue")
+        
+if __name__ == "__main__":
+    s_number = NoS()
+    print(s_number)
+    for i in range(0, s_number):
+        id, name, DoB = Students_detail()
+        students.append({"id": s_id, "name": s_name, "dob": DoB})
+
+    c_number = CountCourse()
+    for i in range(0, c_number):
+        c_id, c_name = Courses_detail()
+        courses.append({"id": c_id, "name": c_name})
+
+    x = '1'
+    while x == '1':
+        choose_course_id = input("Select a course ID: ")
+        for i in range(len(courses)):
+            if courses[i].get("id") == choose_course_id:
+                print("Course's name: " + courses[i].get("name") + "\n")
+                Mark(students, courses[i].get("name"))
+        x = input("Do you want to add mark in another course? (1:yes/0:no): ")
+
+        
+    print("All Students: ")
+    Students_list()
+    print("All Courses: ")
+    Courses_list()
+
+    
+    choose_course = input("Select a course name: ")
+    print("All marks of the course: ")
+    Marks_list()studentL = {}
+Students =[]
+courseL = {}
+Courses =[]
+def inst(s_id, s_name, dob):
+    studentL[s_id] = [s_name, dob]
+def NoS():
+    NoS = int(input("Number of Students: "))
+    return NoS
+def InSt():
+    print("Enter Student Information: ")
+    s_id = input("ID: ")
+    s_name = input("Name : ")
+    DoB = input("DoB: ")
+    inst(id, name,DoB)
+    A = {"id":s_id,"name":s_name,"DoB":DoB}  
+    return A
+def St_List(Students):
+    for A in Students:
+            print(f"id:{A['id']},name: {A['name']},DoB: {A['DoB']}")
+            
+#main 
+NoS = NoS()
+for i in range (0,NoS):
+    A = InSt()
+    Students += [A]
+
+def CountCourse():
+    count = int(input("How many courses are there: "))
+    return count
 
 
-def update_student():
-    global student_fields
-    global student_database
-
-    print("--- Update Student ---")
-    roll = input("Enter roll no. to update: ")
-    index_student = None
-    updated_data = []
-    with open(student_database, "r", encoding="utf-8") as f:
-        reader = csv.reader(f)
-        counter = 0
-        for row in reader:
-            if len(row) > 0:
-                if roll == row[0]:
-                    index_student = counter
-                    print("Student Found: at index ",index_student)
-                    student_data = []
-                    for field in student_fields:
-                        value = input("Enter " + field + ": ")
-                        student_data.append(value)
-                    updated_data.append(student_data)
-                else:
-                    updated_data.append(row)
-                counter += 1
+#course's infor
+def Courses_detail():
+    print("Enter Course's information: ")
+    c_id = input("ID: ")
+    c_name = input("Name: ")
+    return c_id, c_name
 
 
-    # Check if the record is found or not
-    if index_student is not None:
-        with open(student_database, "w", encoding="utf-8") as f:
-            writer = csv.writer(f)
-            writer.writerows(updated_data)
-    else:
-        print("Roll No. not found in our database")
-
-    input("Press any key to continue")
+#display couses' list
+def Courses_list():
+    for i in range(len(courses)):
+        print("Course's ID: " + courses[i].get("id"))
+        print("Course's name: " + courses[i].get("name"))
 
 
-def delete_student():
-    global student_fields
-    global student_database
+#enter marks
+def Mark(students, course):
+    for i in range(len(students)):
+        marks.append({course: {}})
+        mark = float(input("Enter " + students[i].get("name") + "'s mark:\n"))
+        marks[i].update({course: mark})
 
-    print("--- Delete Student ---")
-    roll = input("Enter roll no. to delete: ")
-    student_found = False
-    updated_data = []
-    with open(student_database, "r", encoding="utf-8") as f:
-        reader = csv.reader(f)
-        counter = 0
-        for row in reader:
-            if len(row) > 0:
-                if roll != row[0]:
-                    updated_data.append(row)
-                    counter += 1
-                else:
-                    student_found = True
 
-    if student_found is True:
-        with open(student_database, "w", encoding="utf-8") as f:
-            writer = csv.writer(f)
-            writer.writerows(updated_data)
-        print("Roll no. ", roll, "deleted successfully")
-    else:
-        print("Roll No. not found in our database")
+#display marks' list
+def Marks_list():
+    for i in range(len(students)):
+        print(students[i].get("name") + "'s mark:")
+        print(marks[i].get(choose_course))
+        print("\n")
 
-    input("Press any key to continue")
+        
+if __name__ == "__main__":
+    s_number = NoS()
+    print(s_number)
+    for i in range(0, s_number):
+        id, name, DoB = Students_detail()
+        students.append({"id": s_id, "name": s_name, "dob": DoB})
 
-while True:
-    display_menu()
+    c_number = CountCourse()
+    for i in range(0, c_number):
+        c_id, c_name = Courses_detail()
+        courses.append({"id": c_id, "name": c_name})
 
-    choice = input("Enter your choice: ")
-    if choice == '1':
-        add_student()
-    elif choice == '2':
-        view_students()
-    elif choice == '3':
-        search_student()
-    elif choice == '4':
-        update_student()
-    elif choice == '5':
-        delete_student()
-    else:
-        break
+    x = '1'
+    while x == '1':
+        choose_course_id = input("Select a course ID: ")
+        for i in range(len(courses)):
+            if courses[i].get("id") == choose_course_id:
+                print("Course's name: " + courses[i].get("name") + "\n")
+                Mark(students, courses[i].get("name"))
+        x = input("Do you want to add mark in another course? (1:yes/0:no): ")
 
-print("-------------------------------")
-print(" Thank you for using our system")
-print("-------------------------------")
-# fix Labwork1
+        
+    print("All Students: ")
+    Students_list()
+    print("All Courses: ")
+    Courses_list()
+
+    
+    choose_course = input("Select a course name: ")
+    print("All marks of the course: ")
+    Marks_list()
