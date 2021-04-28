@@ -72,10 +72,10 @@ def CountStudent():
 
 
 def student_detail():
-    s_id = input("ID: ")
-    s_name = input("Name: ")
+    id = input("ID: ")
+    name = input("Name: ")
     DoB = input("Date of birth: ")
-    return s_id, s_name, DoB
+    return id, name, DoB
 
 def Gpa_sort():
     s_sorted = sorted(students, key=lambda student: student.gpa, reverse=True)
@@ -102,44 +102,5 @@ def Add_mark(courses, c_id):
     for course in courses:
         course.get_id() == c_id
         return course.get_name()
-#Input Course Info
-def setMark():
 
-    global index
-    mark = float(input("Mark: "))
-    listMark[index] = MarkTable(checkNameStudent, checkNameCourse, floor(mark))
-    index += 1
 
-#Print list
-def printMarkList():
-    print("\n")
-    print("----------The Mark List---------- ")
-    for i in range(len(listMark)):
-        print("---------" + str(i + 1) + "st Record" + "---------")
-        listMark[i].getMarkInfo()
-
-#Get Student's Average
-def studentAverage():
-    nameTemp = input("Student Name you want to get Average: ")
-    averageMark(nameTemp)
-
-#Main
-index = 0
-numberStudent()
-createListStudent()
-setStudent()
-printStudentList()
-
-print("\n")
-numberCourse()
-createListCourse()
-setCourse()
-printCourseList()
-
-print("\n")
-numberRecord()
-for i in range(numberRecord):
-    createListMark()
-    setMark()
-printMarkList()
-studentAverage()
